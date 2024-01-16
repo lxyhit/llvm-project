@@ -23,7 +23,7 @@
 #include "mlir/IR/BuiltinOps.h"
 
 namespace llvm {
-class DataLayout;
+class TargetMachine;
 } // namespace llvm
 
 namespace Fortran {
@@ -64,11 +64,11 @@ public:
          const Fortran::lower::LoweringOptions &loweringOptions,
          const std::vector<Fortran::lower::EnvironmentDefault> &envDefaults,
          const Fortran::common::LanguageFeatureControl &languageFeatures,
-         const llvm::DataLayout *dataLayout = nullptr) {
+         const llvm::TargetMachine &targetMachine) {
     return LoweringBridge(ctx, semanticsContext, defaultKinds, intrinsics,
                           targetCharacteristics, allCooked, triple, kindMap,
                           loweringOptions, envDefaults, languageFeatures,
-                          dataLayout);
+                          targetMachine);
   }
 
   //===--------------------------------------------------------------------===//
@@ -147,7 +147,7 @@ private:
       const Fortran::lower::LoweringOptions &loweringOptions,
       const std::vector<Fortran::lower::EnvironmentDefault> &envDefaults,
       const Fortran::common::LanguageFeatureControl &languageFeatures,
-      const llvm::DataLayout *dataLayout);
+      const llvm::TargetMachine &targetMachine);
   LoweringBridge() = delete;
   LoweringBridge(const LoweringBridge &) = delete;
 
