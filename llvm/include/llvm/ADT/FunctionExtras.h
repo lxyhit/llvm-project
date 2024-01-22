@@ -319,6 +319,9 @@ protected:
 
 #ifndef NDEBUG
     // In debug builds, we also scribble across the rest of the storage.
+#ifndef _LIBCPP_HAS_NO_ASAN
+    __asan_unpoison_memory_region(RHS.getInlineStorage(), InlineStorageSize);
+#endif
     memset(RHS.getInlineStorage(), 0xAD, InlineStorageSize);
 #endif
   }
