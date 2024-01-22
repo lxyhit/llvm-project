@@ -482,9 +482,6 @@ private:
   friend class Object;
 
   template <typename T, typename... U> void create(U &&... V) {
-#ifndef _LIBCPP_HAS_NO_ASAN
-    __asan_unpoison_memory_region(&Union, sizeof(T));
-#endif
     new (reinterpret_cast<T *>(&Union)) T(std::forward<U>(V)...);
   }
   template <typename T> T &as() const {
