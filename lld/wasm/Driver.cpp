@@ -580,7 +580,7 @@ static void setConfigs() {
 
   if (config->shared) {
     if (config->memoryExport.has_value()) {
-      error("--export-memory is incompatible with --shared");
+      // error("--export-memory is incompatible with --shared");
     }
     if (!config->memoryImport.has_value()) {
       config->memoryImport =
